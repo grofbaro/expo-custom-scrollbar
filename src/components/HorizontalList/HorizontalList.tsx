@@ -57,7 +57,7 @@ const HorizontalList = (props: HorizontalListParams) => {
 
     return (
         <View style={{flex: 1}}>
-            <View>
+            <View >
                 <AnimatedFlatList
                     horizontal
                     data={data}
