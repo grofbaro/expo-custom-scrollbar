@@ -32,22 +32,22 @@ const HorizontalList = (props: HorizontalListParams) => {
         indicatorContainerStyle
     } = props;
 
-    const [completeScrollBarWidth, setCompleteScrollBarWidth] = useState(1);
-    const [visibleScrollBarWidth, setVisibleScrollBarWidth] = useState(0);
+    const [completeContentWidth, setCompleteContentWidth] = useState(1);
+    const [visibleContentWidth, setVisibleContentWidth] = useState(0);
     const [scrollBarContainerWidth, setScrollBarContainerWidth] = useState(width)
 
     const translationX = useSharedValue(0);
 
-    const scrollIndicatorSize = visibleScrollBarWidth > completeScrollBarWidth
+    const scrollIndicatorSize = visibleContentWidth > completeContentWidth
         ? 0
-        : visibleScrollBarWidth * scrollBarContainerWidth / completeScrollBarWidth;
+        : visibleContentWidth * scrollBarContainerWidth / completeContentWidth;
 
     const scrollHandler = useAnimatedScrollHandler((event) => {
         translationX.value = event.contentOffset.x;
     });
 
     const animatedBarIndicatorStyle = useAnimatedStyle(() => {
-        const x = translationX.value * scrollBarContainerWidth / completeScrollBarWidth;
+        const x = translationX.value * scrollBarContainerWidth / completeContentWidth;
 
         return {
             transform: [{translateX: x}]
@@ -70,8 +70,8 @@ const HorizontalList = (props: HorizontalListParams) => {
                     snapToInterval={width * cardWidthPercent + 12}
                     ItemSeparatorComponent={() => <View style={{height: 30, width: 12}}/>}
                     onScroll={scrollHandler}
-                    onContentSizeChange={(width) => setCompleteScrollBarWidth(width)}
-                    onLayout={e => setVisibleScrollBarWidth(e.nativeEvent.layout.width)}
+                    onContentSizeChange={(width) => setCompleteContentWidth(width)}
+                    onLayout={e => setVisibleContentWidth(e.nativeEvent.layout.width)}
                 />
             </View>
             <View style={[styles.scrollBarContainer, indicatorContainerStyle]}
