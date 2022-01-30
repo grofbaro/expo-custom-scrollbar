@@ -1,3 +1,4 @@
+import React from 'react';
 import {StatusBar} from 'expo-status-bar';
 import {Dimensions, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import HorizontalList from "./src/components/HorizontalList/HorizontalList";
